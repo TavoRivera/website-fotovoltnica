@@ -6,7 +6,7 @@ from django.db import models
 class Servicio(models.Model):
     name = models.CharField(max_length=42, blank=False)
     image = models.ImageField(upload_to="static/images/services/", blank=True)
-    comment = models.CharField(max_length=120, blank=True)
+    comment = models.CharField(max_length=400, blank=True)
 
     def __str__(self):
         return f"{self.name}"
@@ -19,10 +19,33 @@ class Proyecto(models.Model):
     comment = models.CharField(max_length=128, blank=True)  
     
     def __str__(self):
-        return f"{self.name} - {self.place}"
+        return f"{self.name} - {self.place}" 
 
-class Capacidad(models.Model):
-    capacity = models.CharField(max_length=18, blank=True)
+
+#aquí irán todos los productos: paneles, baterías, con su debida capacidad.
+class Stock(models.Model):
+    name = models.CharField(max_length=64)
 
     def __str__(self):
-        return f"{self.capacity}"
+        return f"{self.name}"
+
+class Sistema(models.Model):
+    name = models.CharField(max_length=64)
+    image = models.ImageField(upload_to="static/images/services", blank=True)
+    items = models.ManyToManyField(
+        Stock, blank=True, related_name="items")
+    disponibility = models.BooleanField(default=False)
+    system_type =  models.ForeignKey(Servicio, on_delete=models.CASCADE, null=True)
+    comment = models.CharField(max_length=400, blank=True)
+
+    def __str__(self):
+        return f"{self.name}"
+
+class PrecioSistema(models.Model):
+    itemcost = models.ManyToManyField(
+        Sistema, blank=True, related_name="cost")
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        for each in self.itemcost.all():
+            return f"{each} ${self.amount}"

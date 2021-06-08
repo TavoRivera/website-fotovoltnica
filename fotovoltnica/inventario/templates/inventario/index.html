@@ -1,0 +1,176 @@
+
+{% extends "inventario/layout.html" %}
+
+{% block title %}
+Inicio
+{% endblock %}
+{% block body %}
+<!-- panel frontal -->
+<section id="front_view">
+    <div class="container front_view">
+        <div>
+            <h1 class="title">Fotovoltnica <span></span></h1>
+            <h3><small class="title">Evolucionando la energía, desarrollando Nicaragua <span></span></small></h3>
+            <a href="" class="ctz">Cotiza con nosotros</a>
+        </div>
+    </div>
+</section>
+<!-- Fin del panel frontal  -->
+
+<!-- seccion descripcion y servicios -->
+<section id="services">
+    <div class="services container">
+        <div class="service-top">
+            <h2 class="section-title">Nuestra Mis<span>i</span>ón</h2>
+            <div class="misvis">
+                <img src="https://image.flaticon.com/icons/png/128/1924/1924606.png" alt="">
+                <p>Brindar un servicio con alta categoría y accesible a la población perteneciente a las zonas rurales y
+                    al sector
+                    agropecuario, proponiendo una alternativa a las familias para mejorar su calidad de vida y
+                    demostrando que los
+                    paneles
+                    solares tienen una compatibilidad con la agricultura contribuyendo a la conservación del medio
+                    ambiente y al
+                    desarrollo
+                    de Nicaragua.</p>
+            </div>
+        </div>
+        <div class="service-top mt-3">
+            <h2 class="section-title">Nuestra Vis<span>i</span>ón</h2>
+            <div class="misvis">
+                <img src="https://image.flaticon.com/icons/png/128/2082/2082099.png" alt="">
+                <p>Ser los proveedores número uno en servicios de instalación y ventas de sistemas fotovoltaicos en
+                    territorio
+                    nicaragüense, con los mejores precios del mercado ofreciendo equipos de calidad.</p>
+            </div>
+        </div>
+        <div id="servicios" class="service-top mt-5">
+            <h2 class="section-title">Serv<span>i</span>cios</h2>
+            <p>Proponemos diversas alternativas para mejorar el rendimiento en el campo y los negocios a aquellos
+                productores donde la red eléctrica comercial no está a su alcance por su ubicación,
+                permitiéndoles tener energía eléctrica limpia y aprovechar todas las ventajas que brindan los sistemas
+                fotovoltaicos.</p>
+        </div>
+        <div class="service-bottom row row-cols-1 row-cols-md-2">
+            {%csrf_token%}
+            {% for servicio in servicios %}{% load staticfiles %}
+            <div class="service-item col mb-4" style="background-image: url({{servicio.image}});">
+                <h3>{{servicio.name}}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- final seccion de servicios -->
+<!-- sección proyectos -->
+<section id="projects">
+    <div class="projects container">
+        <div class="projects-header">
+            <h2 class="section-title"><span>Proyectos</span> Recientes</h2>
+        </div>
+        <div class="all-projects">
+            {% for proyecto in proyectos %}
+            <div class="project-item">
+                <div class="project-info">
+                    <h2>{{proyecto.name}}</h2>
+                    <h4>{{proyecto.place}}</h4>
+                    <p>{{proyecto.comment}}</p>
+                </div>
+                <div class="project-img">
+                    <img src="{{proyecto.image}}" alt="aqui (project.image de project in projects)">
+                </div>
+            </div>
+            {% endfor %}
+            <div class="project-item">
+                <div class="project-info">
+                    <h2>Instalacion de 15 paneles solares</h2>
+                    <h4>Juigalpa</h4>
+                    <p>Con esta instalacion llevamos energia a 3 familias en la comunidad</p>
+                </div>
+                <div class="project-img">
+                    <img src="https://nicamisol.com/wp-content/uploads/2018/12/Commercial-Solar-Installation-600x400.jpg"
+                        alt="aqui (project.image de project in projects)">
+                </div>
+            </div>
+            <div class="project-item">
+                <div class="project-info">
+                    <h2>Instalacion de 15 paneles solares</h2>
+                    <h4>Juigalpa</h4>
+                    <p>Con esta instalacion llevamos energia a 3 familias en la comunidad</p>
+                </div>
+                <div class="project-img">
+                    <img src="https://nicamisol.com/wp-content/uploads/2018/12/Commercial-Solar-Installation-600x400.jpg"
+                        alt="aqui (project.image de project in projects)">
+                </div>
+            </div>
+        </div>
+        <div class="service-top mt-5">
+            <h2 class="section-title">Beneficios<span> de la energía </span>solar</h2>
+            <div class="misvis">
+                <ul>
+                    <li class="mt-3">✔️ Es una energía limpia, no requiere ningún tipo de combustible fósil
+                        para funcionar </li>
+                    <li class="mt-3">✔️ Los sistemas solares son silenciosos, no requieren ruidosos motores </li>
+                    <li class="mt-3">✔️ El mantenimiento es muy fácil y de bajo costo </li>
+                    <li class="mt-3">✔️ La vida útil de los paneles solares puede superar los 25 años </li>
+                    <li class="mt-3">✔️ Recuperas tu inversión al ahorrar en costos de energía eléctrica convencional
+                    </li>
+                    <li class="mt-3">✔️ Los sistemas son modulares, es decir que puedes iniciar con un sistema pequeño y
+                        posteriormente
+                        irlo ampliando según tu capacidad de inversión </li>
+                </ul>
+            </div>
+        </div>
+</section>
+<!-- final seccion de proyectos -->
+
+<!-- seccion about -->
+<section id="about" class="mt-5">
+    <div class="about">
+        <div class="col-right">
+            <h2 class="section-title"><span>Acerca de</span> nosotros</h2>
+            <img src="https://i.ibb.co/THNxMYZ/fotovoltnica.png">
+            <p>Nuestros 10 años de experiencia en Nicaragua, nos permiten asesorarte y brindarte los equipos necesarios
+                para que
+                inicies a ahorrar energía en tu hogar o negocio. Las marcas que importamos, cuentan con los estándares
+                de calidad
+                internacional, de manera que aseguramos su funcionamiento óptimo y garantía.</p>
+        </div>
+    </div>
+    <div id="contact" class="contact container">
+        <div class="col-right">
+            <h2 class="section-title">Contá<span>c</span>tanos</h2>
+            <div class="contact-items">
+                <div class="contact-item">
+                    <div class="contact-icon"><img src="https://image.flaticon.com/icons/png/128/3447/3447661.png"
+                            alt=""></div>
+                    <div class="contact-info">
+                        <h3>Teléfono</h3>
+                        <p>2552 - 0372</p>
+                        <p>8639 - 0472</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><img src="https://image.flaticon.com/icons/png/128/3447/3447672.png"
+                            alt=""></div>
+                    <div class="contact-info">
+                        <h3>Correo</h3>
+                        <p>fotovoltnica@fotovoltnica.com</p>
+                        <p>octaviostyles02@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><img src="https://image.flaticon.com/icons/png/128/1076/1076731.png">
+                    </div>
+                    <div class="contact-info">
+                        <h3>Dirección</h3>
+                        <p>Costado oeste del parque central, Juigalpa - Chontales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- final about -->
+
+{% endblock %}
