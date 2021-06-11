@@ -6,7 +6,8 @@ Inicio
 {% endblock %}
 {% block body %}
 <!-- panel frontal -->
-<section id="front_view">
+
+<section id="front_view" style="	background-image: url('https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
     <div class="container front_view">
         <div>
             <h1 class="title">Fotovoltnica <span></span></h1>
@@ -55,7 +56,7 @@ Inicio
             {%csrf_token%}
             {% for servicio in servicios %}{% load staticfiles %}
             <div class="service-item col mb-4" style="background-image: url({{servicio.image}});">
-                <h3>{{servicio.name}}</h3>
+                <a href="{% url 'systems' %}"><h3>{{servicio.name}}</h3></a>
             </div>
             {% endfor %}
         </div>

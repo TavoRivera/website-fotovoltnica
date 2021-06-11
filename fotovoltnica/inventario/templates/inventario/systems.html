@@ -1,0 +1,88 @@
+{% extends "inventario/layout.html" %}
+
+{% block title %}
+Nuestros sistemas
+{% endblock %}
+
+{% block body %}
+
+{% for servicio in servicios %}{% load staticfiles %}
+
+<section id="front_view" style="background-image: url({{servicio.image}})">
+    <div class="container front_view">
+        <div class="col-6">
+            <h3 class="title">{{servicio.name}}<span></span></h3>
+        </div>
+        <div class="col-6">
+            <h6 class="title" style="font-size: 1.3rem">{{servicio.comment}}<span></span></h3>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="text-center row">
+        {% for items in sistemas %}
+            {% if items.system_type == servicio %}
+            <div class="mt-4" style="margin:20px;">
+                <div class="card" style="width: 16rem;">{% load staticfiles %}
+                    <img src=" {{items.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><small><b>{{ items.name }}</b></small></h5>
+                        {% for item in items.cost.all %}
+                        <p><b>Precio:</b> ${{item.amount}}</p>
+                        {% if not items.disponibility %}
+                        <div class="ribbon-wrapper-green">
+                            <div class="ribbon-green">Indisponible</div>
+                        </div>
+                        {% endif %}
+                            <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal{{ items.id }}">
+                          Ver más
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal{{ items.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title section-title" style="font-size:0.9rem;" id="exampleModalLongTitle">{{items.name}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <h5>Descripción:</h5>
+                                <p>{{ items.comment }}</p>
+                                <h5>Contiene:</h5>
+                                <ul><li>{{items.items}}</li></ul>
+                                <h5>Precio:</h5>
+                                <h><b>${{item.amount}}</b></p>
+
+
+                              </div>
+                              <div class="modal-footer">
+                                <form action="{% url 'cotizar' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{item.amount}}" id="amount" name="amount">
+                                    <input type="hidden" value="{{items.name}}" id="selection" name="selection">
+                                    <button type="submit" style="color:black; font-size:0.9rem; "class="text-center btn ctz">GENERAR COTIZACION</button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

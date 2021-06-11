@@ -26,11 +26,8 @@
                     <div class="bar"></div>
                 </div>
                 <ul>
-                    <li><a href="#front_view" data-after="inicio">Inicio</a></li>
-                    <li><a href="#services" data-after="misión">Misión</a></li>                  
-                    <li><a href="#servicios" data-after="servicios">Servicios</a></li>
-                    <li><a href="#projects" data-after="proyectos">Proyectos</a></li>
-                    <li><a href="#about" data-after="About">About</a></li>
+                    <li><a href="{% url 'index' %}" data-after="inicio">Inicio</a></li>
+                    <li><a href="{%% url 'systems' }" data-after="servicios">Servicios</a></li>
                     <li><a href="#contact" data-after="Contacto">Contacto</a></li>
                     <li><a href="{% url 'register' %}" data-after="Registrate">Registrate</a></li>
                 </ul>

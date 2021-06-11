@@ -1,18 +1,50 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render,  redirect
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .forms import SignUpForm
 from .models import *
 
 # Create your views here.
 def index(request):
-    
+
     context = {
         'servicios': Servicio.objects.all(),
         'proyectos': Proyecto.objects.all()
     }
     return render(request, "inventario/index.html", context)
+
+def systems(request):
+    context = {
+        'servicios': Servicio.objects.all(),
+        'sistemas': Sistema.objects.all(),
+        'articulos': Stock.objects.all()
+    }
+    return render(request, "inventario/systems.html", context)
+
+def cotizar(request):
+    precio = request.POST['amount']
+    print(precio)
+
+    return redirect('index')
+
+
+# def register(request):
+#     form = SignUpForm(request.POST)
+#     if form.is_valid():
+#         form.save()
+#         username = form.cleaned_data.get('username')
+#         first = form.cleaned_data.get('first')
+#         last = form.cleaned_data.get('last')
+#         email = form.cleaned_data.get('email')
+#         password = form.cleaned_data.get('password1')
+#         user = authenticate(username=username, first=first, last=last, email=email, password=password)
+#         login(request, user)
+#         return redirect('home')
+#     else:
+#         form = SignUpForm()
+#     return render(request, 'inventario/register.html', {'form': form})
 
 
 def register(request):

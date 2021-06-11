@@ -91,9 +91,9 @@ ul {
 	left: 0%;
 }
 #header .nav-list ul a {
-	font-size: 1.8rem;
-	font-weight: 200;
-	letter-spacing: 0.1rem;
+	font-size: 1.5rem;
+	font-weight: 100;
+	letter-spacing: 0.05rem;
 	text-decoration: none;
 	color: white;
 	text-transform: uppercase;
@@ -187,7 +187,6 @@ ul {
 /* End Header section */
 
 #front_view {
-	background-image: url("https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 	background-size: cover;
 	background-position: top center;
 	position: relative;
@@ -236,7 +235,7 @@ ul {
 	animation-delay: 1s;
 }
 
-#front_view .ctz {
+.ctz {
 	display: inline-block;
 	padding: 10px 30px;
 	color: white;
@@ -250,7 +249,7 @@ ul {
 	transition: 0.3s ease background-color;
 	transition-property: background-color, color;
 }
-#front_view .ctz:hover {
+.ctz:hover {
 	color: white;
 	background-color: mediumseagreen;
 }
@@ -436,7 +435,7 @@ ul {
 	background-position: top center;
 	position: relative;
 	z-index: 1;
-	
+
 }
 
 #about::after {
@@ -569,7 +568,7 @@ ul {
 	#services .service-bottom .service-item {
 		flex-basis: 40%;
 		margin: 3%;
-		
+
 	}
 
 	/* proyectos */
@@ -661,3 +660,50 @@ ul {
 	}
 	/* End header */
 }
+
+
+/* si el item esta disponible */
+.ribbon-wrapper-green {
+	width: 85px;
+	height: 88px;
+	overflow: hidden;
+	position: absolute;
+	top: -3px;
+	right: -3px;
+}
+td {
+	padding: 10px;
+}
+th {
+	padding: 10px;
+}
+.ribbon-green {
+	font: bold 15px Sans-Serif;
+	color: #333;
+	text-align: center;
+	text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
+	transform: rotate(45deg);
+	position: relative;
+	padding: 7px 0;
+	left: -5px;
+	top: 15px;
+	width: 120px;
+	background-color: red;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		from(red),
+		to(rgb(255, 52, 52))
+	);
+	background-image: -webkit-linear-gradient(top, red, rgb(255, 52, 52));
+	background-image: -moz-linear-gradient(top, red, rgb(255, 52, 52));
+	background-image: -ms-linear-gradient(top, red, rgb(255, 52, 52));
+	background-image: -o-linear-gradient(top, red, rgb(255, 52, 52));
+	color: black;
+	-webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+
+
