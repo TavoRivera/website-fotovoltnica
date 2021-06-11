@@ -9,7 +9,7 @@ Nuestros sistemas
 {% for servicio in servicios %}{% load staticfiles %}
 
 <section id="front_view" style="background-image: url({{servicio.image}})">
-    <div class="container front_view">
+    <div id="{{servicio.name}}" class="container front_view">
         <div class="col-6">
             <h3 class="title">{{servicio.name}}<span></span></h3>
         </div>
@@ -53,7 +53,7 @@ Nuestros sistemas
                                 <h5>Descripción:</h5>
                                 <p>{{ items.comment }}</p>
                                 <h5>Contiene:</h5>
-                                <ul><li>{{items.items}}</li></ul>
+                                {% for articulo in items.items.all %} <ul class="text-left"><li>- {{articulo}} </li></ul>{% endfor %}
                                 <h5>Precio:</h5>
                                 <h><b>${{item.amount}}</b></p>
 

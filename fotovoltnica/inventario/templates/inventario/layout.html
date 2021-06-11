@@ -27,9 +27,11 @@
                 </div>
                 <ul>
                     <li><a href="{% url 'index' %}" data-after="inicio">Inicio</a></li>
-                    <li><a href="{%% url 'systems' }" data-after="servicios">Servicios</a></li>
+                    <li><a href="{% url 'systems' %}" data-after="servicios">Servicios</a></li>
                     <li><a href="#contact" data-after="Contacto">Contacto</a></li>
                     <li><a href="{% url 'register' %}" data-after="Registrate">Registrate</a></li>
+                    <li><a href="{% url 'login' %}" data-after="Inicia sesión">Inicia sesión</a></li>
+                    <li><a href="{% url 'logout' %}" data-after="cerrar sesión">cerrar sesión</a></li>
                 </ul>
             </div>
         </div>

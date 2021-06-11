@@ -1,0 +1,26 @@
+{% extends "inventario/layout.html" %}
+
+{% block title %}
+Registrate
+{% endblock %}
+
+{% block body %}
+
+<div class="container text-center">
+    <form action="{% url 'login' %}" class="form" method="post">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="username" name="username" class="form-control">
+
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control">
+
+
+        <br>
+
+        <input type="submit" class=" btn btn-dark" value="Login">
+    </form>
+
+</div>
+
+{% endblock %}

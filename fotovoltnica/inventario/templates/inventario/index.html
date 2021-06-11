@@ -56,7 +56,7 @@ Inicio
             {%csrf_token%}
             {% for servicio in servicios %}{% load staticfiles %}
             <div class="service-item col mb-4" style="background-image: url({{servicio.image}});">
-                <a href="{% url 'systems' %}"><h3>{{servicio.name}}</h3></a>
+                <a href="{% url 'systems' %}#{{servicio.name}}"><h3>{{servicio.name}}</h3></a>
             </div>
             {% endfor %}
         </div>

@@ -3,7 +3,8 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import SignUpForm
+# from djngo.core.mail import EmailMessage
+# from django.template.loader import render_to_string
 from .models import *
 
 # Create your views here.
@@ -24,27 +25,51 @@ def systems(request):
     return render(request, "inventario/systems.html", context)
 
 def cotizar(request):
+    if not request.user.is_authenticated:
+        return render(request, "inventario/login.html")
     precio = request.POST['amount']
-    print(precio)
+    sistema = request.POST['selection']
+    nombre = request.user.first_name
+    apellido = request.user.last_name
+    email = request.user.email
+
+    datos_cliente = "<h4><u>Datos del cliente:</u></h4>\
+                    <p><b>Nombre:</b> {} {} </p>\
+                    <p><b>Correo:</b> {} </p>\
+                    <br><br>".format(nombre,apellido,email)
+
+    print(datos_cliente)
+
+
 
     return redirect('index')
 
+def login_view(request):
+    if request.method == 'GET':
+        return render(request, 'inventario/login.html')
+    try:
+        username = request.POST['username']
+        password = request.POST['password']
 
-# def register(request):
-#     form = SignUpForm(request.POST)
-#     if form.is_valid():
-#         form.save()
-#         username = form.cleaned_data.get('username')
-#         first = form.cleaned_data.get('first')
-#         last = form.cleaned_data.get('last')
-#         email = form.cleaned_data.get('email')
-#         password = form.cleaned_data.get('password1')
-#         user = authenticate(username=username, first=first, last=last, email=email, password=password)
-#         login(request, user)
-#         return redirect('home')
-#     else:
-#         form = SignUpForm()
-#     return render(request, 'inventario/register.html', {'form': form})
+    except KeyError:
+        return render(request, "inventario/login.html", {"message_alert": "Invalid Entry"})
+    if not username:
+        return render(request, "inventario/login.html", {"message_alert": "Invalid Username"})
+    if not password:
+        return render(request, "inventario/login.html", {"message_alert": "Invalid Password"})
+
+    user = authenticate(request, username=username, password=password)
+    if not user:
+        return render(request, 'inventario/login.html', {'message_alert': 'Invalid credentials'})
+    else:
+        login(request, user)
+        # render(request, "orders/index.html", {"message_success": "Welcome!"})
+        return HttpResponseRedirect(reverse('index'))
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
 
 
 def register(request):
@@ -82,4 +107,4 @@ def register(request):
     # return redirect(request.get_full_path())
     # messages.success(request, f" Now you're registered!")
     #return HttpResponseRedirect(reverse('index'))
-    return render(request, "inventario/index.html")
+    return HttpResponseRedirect(reverse('index'))
