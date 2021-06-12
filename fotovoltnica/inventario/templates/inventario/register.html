@@ -6,29 +6,33 @@ Registrate
 
 {% block body %}
 
-<div class="container text-center">
-    <form action="{% url 'register' %}" class="form" method="post">
-        {% csrf_token %}
-        <label for="username">Username</label>
-        <input type="username" name="username" class="form-control">
 
-        <label for="password">Password</label>
-        <input type="password" name="password" class="form-control">
 
-        <label for="fname">First name</label>
-        <input type="text" name="fname" class="form-control">
 
-        <label for="lname">Last name </label>
-        <input type="lname" name="lname" class="form-control">
+<section id="front_view"
+    style="background-image: url('https://media.ultimahora.com/p/612f1807fef6ca0b7336633ef127b427/adjuntos/161/imagenes/002/518/0002518128/los-panelesomodulos-fotovoltaicosestan-formados-un-conjunto-celdasque-producen-electricidada-partir-la-luzque-incide-ellos-foto-xatakacom.jpg');">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="title mr-5">Registrate</h1>
+        </div>
+        <form action="{% url 'register' %}" class="form" method="post" id="form_area" style="height:35rem;">
+            {% csrf_token %}
+            <input placeholder="Nombre de usuario" id="username" class="input" name="username" type="text" value=""
+                size="30" /><br />
 
-        <label for="email">Email</label>
-        <input type="email" name="email" class="form-control">
+            <input placeholder="Contraseña" id="password" class="input" name="password" type="password" value=""
+                size="30" /><br />
 
-        <br>
+            <input placeholder="Nombre" id="fname" class="input" name="fname" type="text" value="" size="30" /><br />
 
-        <input type="submit" class=" btn btn-dark" value="Register">
-    </form>
+            <input placeholder="Apellido" id="lname" class="input" name="lname" type="text" value="" size="30" /><br />
 
-</div>
+            <input placeholder="Correo Electrónico" id="email" class="input" name="email" type="email" value="" size="30" /><br />
+
+            <button id="submit_button" class="ctz" style="color: black; font-size: 1rem;" type="submit"
+                value="Register">Registrar</button>
+        </form>
+    </div>
+</section>
 
 {% endblock %}

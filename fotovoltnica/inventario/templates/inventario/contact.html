@@ -1,0 +1,70 @@
+{% extends "inventario/layout.html" %}
+
+{% block title %}
+Contáctanos
+{% endblock %}
+
+{% block body %}
+<section id="front_view" style="background-image: url('https://tecnosolab.com/noticias/wp-content/uploads/2017/05/ampliar-instalacion-solar.jpg');"> 
+    <div class="container">
+        <div class="text-center">
+            <h1 class="title mr-5">Será un gusto atenderle</h1>
+        </div>
+        <form id="form_area" action="{% url 'contacto' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if user.username %}
+              
+            <input placeholder="Tu nombre" id="name" class="input" name="name" type="text" value="{{ user.first_name}} {{ user.last_name}}" size="30" /><br />
+                
+            <input placeholder="Tu email" id="email" class="input" name="email" type="text" value="{{ user.email}}" size="30" /><br />
+            {% else %}
+
+            <input placeholder="Tu nombre" id="name" class="input" name="name" type="text" value="" size="30" /><br />
+            
+            <input placeholder="Tu email" id="email" class="input" name="email" type="text" value="" size="30" /><br />
+
+            {% endif %}
+                
+            <textarea placeholder="Mensaje" id="message" class="input" name="message" rows="7" cols="30"></textarea><br />
+                
+            <button id="submit_button" class="ctz" style="color: black; font-size: 1rem;" type="submit" value="Send email">Enviar</button>
+        </form>
+    </div>
+</section>
+<section id="about">
+    <div id="contact" class="contact container">
+        <div class="col-right">
+            <h2 class="section-title">Contá<span>c</span>tanos</h2>
+            <div class="contact-items">
+                <div class="contact-item">
+                    <div class="contact-icon"><img src="https://image.flaticon.com/icons/png/128/3447/3447661.png" alt="">
+                    </div>
+                    <div class="contact-info">
+                        <h3>Teléfono</h3>
+                        <p>2552 - 0372</p>
+                        <p>8639 - 0472</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><img src="https://image.flaticon.com/icons/png/128/3447/3447672.png" alt="">
+                    </div>
+                    <div class="contact-info">
+                        <h3>Correo</h3>
+                        <p>fotovoltnica@gmail.com</p>
+                        <p>octaviostyles02@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><img src="https://image.flaticon.com/icons/png/128/1076/1076731.png">
+                    </div>
+                    <div class="contact-info">
+                        <h3>Dirección</h3>
+                        <p>Costado oeste del parque central, Juigalpa - Chontales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

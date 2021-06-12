@@ -6,21 +6,24 @@ Registrate
 
 {% block body %}
 
-<div class="container text-center">
-    <form action="{% url 'login' %}" class="form" method="post">
+<section id="front_view"
+    style="background-image: url('https://media.ultimahora.com/p/612f1807fef6ca0b7336633ef127b427/adjuntos/161/imagenes/002/518/0002518128/los-panelesomodulos-fotovoltaicosestan-formados-un-conjunto-celdasque-producen-electricidada-partir-la-luzque-incide-ellos-foto-xatakacom.jpg');">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="title mr-5">Inicia Sesión</h1>
+        </div>
+    <form action="{% url 'login' %}" class="form" method="post" id="form_area">
         {% csrf_token %}
-        <label for="username">Username</label>
-        <input type="username" name="username" class="form-control">
-
-        <label for="password">Password</label>
-        <input type="password" name="password" class="form-control">
-
-
-        <br>
-
-        <input type="submit" class=" btn btn-dark" value="Login">
-    </form>
-
-</div>
+        <input placeholder="Nombre de usuario" id="username" class="input" name="username" type="text" value=""
+            size="30" /><br />
+        
+        <input placeholder="Contraseña" id="password" class="input" name="password" type="password" value="" size="30" /><br />
+        
+        <button id="submit_button" class="ctz" style="color: black; font-size: 1rem;" type="submit"
+            value="Send email">Entrar</button>
+        </form>
+        </div>
+</section>
 
 {% endblock %}
+
