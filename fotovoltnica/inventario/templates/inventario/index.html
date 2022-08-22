@@ -54,7 +54,7 @@ Inicio
         </div>
         <div class="service-bottom row row-cols-1 row-cols-md-2">
             {%csrf_token%}
-            {% for servicio in servicios %}{% load staticfiles %}
+            {% for servicio in servicios %}
             <div class="service-item col mb-4" style="background-image: url({{servicio.image}});">
                 <a href="{% url 'systems' %}#{{servicio.name}}"><h3>{{servicio.name}}</h3></a>
             </div>

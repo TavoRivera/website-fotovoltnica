@@ -6,7 +6,7 @@ Nuestros sistemas
 
 {% block body %}
 
-{% for servicio in servicios %}{% load staticfiles %}
+{% for servicio in servicios %}
 
 <section id="front_view" style="background-image: url({{servicio.image}})">
     <div id="{{servicio.name}}" class="container front_view">
@@ -23,7 +23,7 @@ Nuestros sistemas
         {% for items in sistemas %}
             {% if items.system_type == servicio %}
             <div class="mt-4 col-5" style="margin:20px;">
-                <div class="card">{% load staticfiles %}
+                <div class="card">
                     <img src=" {{items.image}}" class="card-img-top" width="200px" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><small><b>{{ items.name }}</b></small></h5>
